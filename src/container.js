@@ -3,10 +3,10 @@
 // Services
 
 // Controllers
-const CheckController = require("./controllers/checkController");
+const CheckController = require("./controllers/check.controller");
 
 // Check
-const checkController = CheckController();
+const checkController = new CheckController();
 
 module.exports = {
   checkController,
