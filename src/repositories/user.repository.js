@@ -22,6 +22,16 @@ class UserRepository {
       return [null, error];
     }
   };
+
+  findById = async (id) => {
+    try {
+      const user = await this.model.findByPk(id);
+
+      return [user, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = UserRepository;

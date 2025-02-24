@@ -32,8 +32,13 @@ const tokenService = new TokenService(config.jwt);
 const authService = new AuthService(userRepository, tokenService);
 const authController = new AuthController(authService);
 
+// Middlewares
+const AuthMiddleware = require("./middlewares/auth.middleware");
+const authMiddleware = new AuthMiddleware(userService, tokenService);
+
 module.exports = {
   checkController,
   userController,
   authController,
+  authMiddleware,
 };

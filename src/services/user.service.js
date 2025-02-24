@@ -29,6 +29,19 @@ class UserService {
       return [null, error];
     }
   };
+
+  getUserById = async (id) => {
+    try {
+      const [user, errorUser] = await this.userRepository.findById(id);
+      if (errorUser) throw errorUser;
+
+      if (!user) throw new AppError(404, "User not found");
+
+      return [user, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = UserService;
