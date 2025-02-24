@@ -1,0 +1,43 @@
+{
+  "name": "smart-collateral-be",
+  "version": "1.0.0",
+  "description": "Smart Collateral is",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/andrawicaksono/smart-collateral-be.git"
+  },
+  "keywords": [
+    "smart",
+    "collateral",
+    "express",
+    "javascript"
+  ],
+  "author": "andrawicaksono",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrawicaksono/smart-collateral-be/issues"
+  },
+  "homepage": "https://github.com/andrawicaksono/smart-collateral-be#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-xss-sanitizer": "^2.0.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
