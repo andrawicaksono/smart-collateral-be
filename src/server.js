@@ -9,7 +9,7 @@ const compression = require("compression");
 const { xss } = require("express-xss-sanitizer");
 const config = require("./config");
 const routes = require("./routes");
-const { errorHandler } = require("./middlewares/errorHandler");
+const { errorHandler } = require("./middlewares/error.middleware");
 
 const app = express();
 
