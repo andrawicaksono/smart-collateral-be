@@ -46,7 +46,7 @@ class HistoryRepository {
   findByIdAndUserId = async (data) => {
     try {
       const history = await this.model.findOne({
-        where: { id: data.id, user_id: data.user_id },
+        where: { id: data.id, user_id: data.user_id, deleted_at: null },
       });
 
       return [history, null];
