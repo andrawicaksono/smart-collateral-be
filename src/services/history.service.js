@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const { AppError } = require("../utils/error");
 
 class HistoryService {
