@@ -33,7 +33,7 @@ History.init(
       type: DataTypes.SMALLINT,
       allowNull: true,
       validate: {
-        min: 1,
+        min: 0,
         max: 5,
       },
     },
