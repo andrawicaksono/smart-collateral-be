@@ -53,6 +53,50 @@ class HistoryService {
       return [null, error];
     }
   };
+
+  updateHistory = async (data) => {
+    try {
+      const [history, errorHistory] =
+        await this.historyRepository.findByIdAndUserId({
+          id: data.id,
+          user_id: data.user_id,
+        });
+
+      if (errorHistory) throw errorHistory;
+
+      if (!history) throw new AppError(404, "History not found");
+
+      history.name = data.name;
+      history.city = data.city;
+      history.latitude = data.latitude;
+      history.longitude = data.longitude;
+      history.swimming_pool = data.swimming_pool;
+      history.garage = data.garage;
+      history.carport = data.carport;
+      history.garden = data.garden;
+      history.parking_access = data.parking_access;
+      history.drying_area = data.drying_area;
+      history.security = data.security;
+      history.bedrooms = data.bedrooms;
+      history.bathrooms = data.bathrooms;
+      history.land_size = data.land_size;
+      history.building_size = data.building_size;
+      history.certificate = data.certificate;
+      history.electricity = data.electricity;
+      history.floors = data.floors;
+      history.property_condition = data.property_condition;
+      history.price_in_rp = data.price_in_rp;
+      history.is_completed = data.is_completed;
+
+      const [updatedHistory, errorUpdatedHistory] =
+        await this.historyRepository.update(history);
+      if (errorUpdatedHistory) throw errorUpdatedHistory;
+
+      return [updatedHistory, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryService;

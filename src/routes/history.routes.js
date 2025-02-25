@@ -19,4 +19,6 @@ router.get(
   historyController.getDetailedHistory
 );
 
+router.put("/:id", authMiddleware.verifyToken, historyController.updateHistory);
+
 module.exports = router;

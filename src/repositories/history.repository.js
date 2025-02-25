@@ -35,6 +35,7 @@ class HistoryRepository {
         where: condition,
         limit: data.limit ? Number(data.limit) : null,
         offset: data.offset ? Number(data.offset) : null,
+        order: [["created_at", "DESC"]],
       });
 
       return [history, null];
@@ -48,6 +49,17 @@ class HistoryRepository {
       const history = await this.model.findOne({
         where: { id: data.id, user_id: data.user_id, deleted_at: null },
       });
+
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
+
+  update = async (history) => {
+    try {
+      history.updated_at = new Date();
+      await history.save();
 
       return [history, null];
     } catch (error) {
