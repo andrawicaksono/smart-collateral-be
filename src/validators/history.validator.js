@@ -6,7 +6,7 @@ const addHistorySchema = Joi.object({
   latitude: Joi.number(),
   longitude: Joi.number(),
   swimming_pool: Joi.boolean(),
-  garage: Joi.boolean(),
+  garage: Joi.number(),
   carport: Joi.boolean(),
   garden: Joi.boolean(),
   parking_access: Joi.boolean(),
