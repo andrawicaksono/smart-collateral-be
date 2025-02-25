@@ -97,6 +97,28 @@ class HistoryService {
       return [null, error];
     }
   };
+
+  deleteHistory = async (data) => {
+    try {
+      const [history, errorHistory] =
+        await this.historyRepository.findByIdAndUserId({
+          id: data.id,
+          user_id: data.user_id,
+        });
+
+      if (errorHistory) throw errorHistory;
+
+      if (!history) throw new AppError(404, "History not found");
+
+      const [deletedHistory, errorDeletedHistory] =
+        await this.historyRepository.delete(history);
+      if (errorDeletedHistory) throw errorDeletedHistory;
+
+      return [deletedHistory, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryService;

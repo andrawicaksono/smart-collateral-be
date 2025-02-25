@@ -66,6 +66,17 @@ class HistoryRepository {
       return [null, error];
     }
   };
+
+  delete = async (history) => {
+    try {
+      history.deleted_at = new Date();
+      await history.save();
+
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryRepository;

@@ -21,4 +21,10 @@ router.get(
 
 router.put("/:id", authMiddleware.verifyToken, historyController.updateHistory);
 
+router.delete(
+  "/:id",
+  authMiddleware.verifyToken,
+  historyController.deleteHistory
+);
+
 module.exports = router;

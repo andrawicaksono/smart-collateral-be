@@ -179,6 +179,27 @@ class HistoryController {
       next(error);
     }
   };
+
+  deleteHistory = async (req, res, next) => {
+    try {
+      const user_id = req.user.id;
+      const { id } = req.params;
+
+      const [_, errorDeletedHistory] = await this.historyService.deleteHistory({
+        user_id,
+        id,
+      });
+
+      if (errorDeletedHistory) throw errorDeletedHistory;
+
+      res.status(200).json({
+        success: true,
+        message: "History deleted successfully",
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 module.exports = HistoryController;
