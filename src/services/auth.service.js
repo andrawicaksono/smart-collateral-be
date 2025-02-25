@@ -23,6 +23,17 @@ class AuthService {
       return [null, error];
     }
   };
+
+  getAuthUser = async (id, token) => {
+    try {
+      const [user, errorUser] = await this.userRepository.findById(id);
+      if (errorUser) throw errorUser;
+      if (!user) throw new AppError(404, "User not found");
+      return [{ user, token }, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = AuthService;
