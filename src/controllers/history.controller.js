@@ -68,6 +68,27 @@ class HistoryController {
       next(error);
     }
   };
+
+  getHistory = async (req, res, next) => {
+    try {
+      const user_id = req.user.id;
+      const { is_completed, limit, offset } = req.query;
+      const [history, error] = await this.historyService.getHistory({
+        user_id,
+        is_completed,
+        limit,
+        offset,
+      });
+      if (error) throw error;
+      res.status(200).json({
+        success: true,
+        message: "History fetched successfully",
+        data: history.map((history) => historyResponse(history)),
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 module.exports = HistoryController;

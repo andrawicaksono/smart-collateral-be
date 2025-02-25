@@ -11,4 +11,6 @@ router.post(
   historyController.addHistory
 );
 
+router.get("/", authMiddleware.verifyToken, historyController.getHistory);
+
 module.exports = router;

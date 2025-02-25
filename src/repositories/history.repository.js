@@ -12,6 +12,36 @@ class HistoryRepository {
       return [null, error];
     }
   };
+
+  findAll = async (data) => {
+    const condition = {
+      user_id: data.user_id,
+      deleted_at: null,
+    };
+
+    switch (data.is_completed) {
+      case "true":
+        condition.is_completed = true;
+        break;
+      case "false":
+        condition.is_completed = false;
+        break;
+      default:
+        break;
+    }
+
+    try {
+      const history = await this.model.findAll({
+        where: condition,
+        limit: data.limit ? Number(data.limit) : null,
+        offset: data.offset ? Number(data.offset) : null,
+      });
+
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryRepository;

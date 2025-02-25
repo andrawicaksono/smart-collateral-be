@@ -24,6 +24,18 @@ class HistoryService {
       return [null, error];
     }
   };
+
+  getHistory = async (data) => {
+    try {
+      const [history, errorHistory] = await this.historyRepository.findAll(
+        data
+      );
+      if (errorHistory) throw errorHistory;
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryService;
