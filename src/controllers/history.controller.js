@@ -1,3 +1,5 @@
+const { historyResponse } = require("../utils/responseFormatter/history");
+
 class HistoryController {
   constructor(historyService) {
     this.historyService = historyService;
@@ -60,7 +62,7 @@ class HistoryController {
       res.status(201).json({
         success: true,
         message: "History added successfully",
-        data: history,
+        data: historyResponse(history),
       });
     } catch (error) {
       next(error);
