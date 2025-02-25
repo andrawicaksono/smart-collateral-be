@@ -89,6 +89,28 @@ class HistoryController {
       next(error);
     }
   };
+
+  getDetailedHistory = async (req, res, next) => {
+    try {
+      const user_id = req.user.id;
+      const { id } = req.params;
+
+      const [history, error] = await this.historyService.getDetailedHistory({
+        user_id,
+        id,
+      });
+
+      if (error) throw error;
+
+      res.status(200).json({
+        success: true,
+        message: "Detailed History fetched successfully",
+        data: historyResponse(history),
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 module.exports = HistoryController;

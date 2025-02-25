@@ -42,6 +42,18 @@ class HistoryRepository {
       return [null, error];
     }
   };
+
+  findByIdAndUserId = async (data) => {
+    try {
+      const history = await this.model.findOne({
+        where: { id: data.id, user_id: data.user_id },
+      });
+
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
 }
 
 module.exports = HistoryRepository;

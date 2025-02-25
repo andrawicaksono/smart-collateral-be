@@ -30,7 +30,24 @@ class HistoryService {
       const [history, errorHistory] = await this.historyRepository.findAll(
         data
       );
+
       if (errorHistory) throw errorHistory;
+
+      return [history, null];
+    } catch (error) {
+      return [null, error];
+    }
+  };
+
+  getDetailedHistory = async (data) => {
+    try {
+      const [history, errorHistory] =
+        await this.historyRepository.findByIdAndUserId(data);
+
+      if (errorHistory) throw errorHistory;
+
+      if (!history) throw new AppError(404, "History not found");
+
       return [history, null];
     } catch (error) {
       return [null, error];

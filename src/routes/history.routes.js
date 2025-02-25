@@ -13,4 +13,10 @@ router.post(
 
 router.get("/", authMiddleware.verifyToken, historyController.getHistory);
 
+router.get(
+  "/:id",
+  authMiddleware.verifyToken,
+  historyController.getDetailedHistory
+);
+
 module.exports = router;
