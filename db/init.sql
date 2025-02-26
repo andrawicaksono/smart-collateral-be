@@ -1,0 +1,41 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE,
+    branch VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL
+);
+
+CREATE TABLE histories (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(40) NOT NULL,
+    latitude DECIMAL(9,6) NULL,
+    longitude DECIMAL(9,6) NULL,
+    swimming_pool BOOLEAN NULL,
+    garage INT NULL,
+    carport INT NULL,
+    garden BOOLEAN NULL,
+    parking_access BOOLEAN NULL,
+    drying_area BOOLEAN NULL,
+    security BOOLEAN NULL,
+    bedrooms SMALLINT NULL,
+    bathrooms SMALLINT NULL,
+    land_size INT NULL,
+    building_size INT NULL,
+    certificate VARCHAR(10) NULL,
+    electricity INT NULL,
+    floors SMALLINT NULL,
+    property_condition SMALLINT NULL CHECK (property_condition BETWEEN 0 AND 5),
+    price_in_rp DECIMAL(15,2) NULL,
+    is_completed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL,
+    CONSTRAINT fk_histories_users FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
