@@ -38,7 +38,11 @@ class HistoryRepository {
         order: [["created_at", "DESC"]],
       });
 
-      return [history, null];
+      const count = await this.model.count({
+        where: condition,
+      });
+
+      return [{ history, count }, null];
     } catch (error) {
       return [null, error];
     }
