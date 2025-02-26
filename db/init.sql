@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
     name VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE users (
     deleted_at TIMESTAMP NULL
 );
 
-CREATE TABLE histories (
+CREATE TABLE IF NOT EXISTS histories (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     name VARCHAR(255) NOT NULL,
