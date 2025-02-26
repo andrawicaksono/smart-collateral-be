@@ -8,18 +8,21 @@ const History = require("./models/history.model");
 // Repositories
 const UserRepository = require("./repositories/user.repository");
 const HistoryRepository = require("./repositories/history.repository");
+const PredictRepository = require("./repositories/predict.repository");
 
 // Services
 const UserService = require("./services/user.service");
 const AuthService = require("./services/auth.service");
 const TokenService = require("./services/token.service");
 const HistoryService = require("./services/history.service");
+const PredictService = require("./services/predict.service");
 
 // Controllers
 const CheckController = require("./controllers/check.controller");
 const UserController = require("./controllers/user.controller");
 const AuthController = require("./controllers/auth.controller");
 const HistoryController = require("./controllers/history.controller");
+const PredictController = require("./controllers/predict.controller");
 
 // Check
 const checkController = new CheckController();
@@ -41,6 +44,11 @@ const historyRepository = new HistoryRepository(History);
 const historyService = new HistoryService(historyRepository, userRepository);
 const historyController = new HistoryController(historyService);
 
+// Predict
+const predictRepository = new PredictRepository(config.api);
+const predictService = new PredictService(predictRepository);
+const predictController = new PredictController(predictService);
+
 // Middlewares
 const AuthMiddleware = require("./middlewares/auth.middleware");
 const authMiddleware = new AuthMiddleware(userService, tokenService);
@@ -50,5 +58,6 @@ module.exports = {
   userController,
   authController,
   historyController,
+  predictController,
   authMiddleware,
 };
