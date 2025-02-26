@@ -12,6 +12,8 @@ class PredictService {
         parking_access: data.parking_access ? 1 : 0,
         drying_area: data.drying_area ? 1 : 0,
         security: data.security ? 1 : 0,
+        property_condition:
+          data.property_condition > 0 ? data.property_condition - 1 : 0,
       });
       if (error) throw error;
       return [result, null];
