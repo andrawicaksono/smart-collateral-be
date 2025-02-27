@@ -27,10 +27,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Rate Limit 100 requests per 15 minutes
+// Rate Limit 5 requests per 5 minutes
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 5 * 60 * 1000,
+  max: 5,
   message: "Too many requests, please try again later.",
 });
 app.use("/api/v1/auth", limiter);
