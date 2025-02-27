@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
-const { rateLimit } = require("express-rate-limit");
 const compression = require("compression");
 const { xss } = require("express-xss-sanitizer");
 const config = require("./config");
@@ -26,14 +25,6 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
-
-// Rate Limit 5 requests per 5 minutes
-const limiter = rateLimit({
-  windowMs: 5 * 60 * 1000,
-  max: 5,
-  message: "Too many requests, please try again later.",
-});
-app.use("/api/v1/auth", limiter);
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
