@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const addHistorySchema = Joi.object({
   name: Joi.string().required(),
-  city: Joi.string(),
+  city: Joi.string().allow("").optional(),
   latitude: Joi.number(),
   longitude: Joi.number(),
   swimming_pool: Joi.boolean(),
@@ -16,7 +16,7 @@ const addHistorySchema = Joi.object({
   bathrooms: Joi.number(),
   land_size: Joi.number(),
   building_size: Joi.number(),
-  certificate: Joi.string(),
+  certificate: Joi.string().allow("").optional(),
   electricity: Joi.number(),
   floors: Joi.number(),
   property_condition: Joi.number(),
