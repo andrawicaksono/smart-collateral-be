@@ -33,7 +33,7 @@ const limiter = rateLimit({
   max: 100,
   message: "Too many requests, please try again later.",
 });
-app.use(limiter);
+app.use("/api/v1/auth", limiter);
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
