@@ -1,3 +1,5 @@
+const { AppError } = require("../utils/error");
+
 class AuthMiddleware {
   constructor(userService, tokenService) {
     this.userService = userService;
@@ -9,38 +11,42 @@ class AuthMiddleware {
 
     try {
       if (!authHeader || !authHeader.startsWith("Bearer "))
-        throw new Error("Invalid token");
+        throw new AppError(403, "Invalid token");
 
       const token = authHeader.split(" ")[1];
 
-      if (!token) throw Error("Invalid token");
+      if (!token) throw AppError(403, "Invalid token");
 
       const decoded = this.tokenService.verify(token);
 
-      const [user, err] = await this.userService.getUserById(decoded.id);
-      if (err) throw err;
+      const [user, error] = await this.userService.getUserById(decoded.id);
+      if (error) throw error;
 
       req.user = user;
       req.token = token;
 
       next();
-    } catch (err) {
-      console.error(err);
-      res.status(403).json({
+    } catch (error) {
+      console.error(error);
+      return res.status(error.statusCode).json({
         success: false,
-        message: "Invalid token",
+        message: error.message,
       });
     }
   };
 
   isAdmin = async (req, res, next) => {
-    if (!req.user.is_admin)
-      return res.status(403).json({
-        success: false,
-        message: "Access denied",
-      });
+    try {
+      if (!req.user.is_admin) throw new AppError(403, "Access denied");
 
-    next();
+      next();
+    } catch (error) {
+      console.error(error);
+      return res.status(error.statusCode).json({
+        success: false,
+        message: error.message,
+      });
+    }
   };
 }
 

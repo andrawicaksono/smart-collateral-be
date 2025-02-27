@@ -2,6 +2,7 @@ const { AppError } = require("../utils/error");
 
 const errorHandler = (error, req, res, next) => {
   if (error instanceof AppError) {
+    console.error(error);
     return res.status(error.statusCode).json({
       success: false,
       message: error.message,
@@ -9,7 +10,6 @@ const errorHandler = (error, req, res, next) => {
   }
 
   console.error(error);
-
   return res.status(500).json({
     success: false,
     message: "Internal Server Error",
