@@ -4,6 +4,8 @@ class PredictRepository {
   constructor(api) {
     this.api = api;
   }
+
+  // Hit API Prediction to get price prediction
   predict = async (data) => {
     try {
       const timestamp = new Date().toISOString();

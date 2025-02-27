@@ -14,6 +14,7 @@ class UserService {
       if (errorUser) throw errorUser;
       if (user) throw new AppError(409, "User already exists");
 
+      // Hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(data.password, salt);
 

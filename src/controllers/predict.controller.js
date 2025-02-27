@@ -8,6 +8,7 @@ class PredictController {
       const data = req.body;
       const [result, error] = await this.predictService.predict(data);
       if (error) throw error;
+
       res.status(200).json({
         success: true,
         message: "Predicted successfully",

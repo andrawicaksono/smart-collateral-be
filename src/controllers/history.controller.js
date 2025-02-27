@@ -81,6 +81,7 @@ class HistoryController {
         offset,
       });
       if (error) throw error;
+
       res.status(200).json({
         success: true,
         message: "History fetched successfully",

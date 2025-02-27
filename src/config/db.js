@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
+// Define ORM
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -13,6 +14,7 @@ const sequelize = new Sequelize(
   }
 );
 
+// Connect to Database
 const connect = async () => {
   try {
     await sequelize.authenticate();

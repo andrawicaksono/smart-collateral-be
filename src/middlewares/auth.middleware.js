@@ -6,6 +6,7 @@ class AuthMiddleware {
     this.tokenService = tokenService;
   }
 
+  // Verify Bearer token
   verifyToken = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 

@@ -1,3 +1,4 @@
+// Validate input based on validator schema
 const validateInput = (schema) => (req, res, next) => {
   const data = req.body;
 

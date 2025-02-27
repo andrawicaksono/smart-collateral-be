@@ -60,11 +60,11 @@ class HistoryService {
           id: data.id,
           user_id: data.user_id,
         });
-
       if (errorHistory) throw errorHistory;
 
       if (!history) throw new AppError(404, "History not found");
 
+      // Update history
       history.name = data.name;
       history.city = data.city;
       history.latitude = data.latitude;

@@ -13,6 +13,7 @@ class AuthController {
         password,
       });
       if (error) throw error;
+
       res.status(200).json({
         success: true,
         message: "User added successfully",
@@ -28,6 +29,7 @@ class AuthController {
       const id = req.user.id;
       const [user, error] = await this.authService.getAuthUser(id, req.token);
       if (error) throw error;
+
       res.status(200).json({
         success: true,
         message: "Get Authenticated User successfully",

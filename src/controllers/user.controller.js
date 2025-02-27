@@ -15,6 +15,7 @@ class UserController {
         branch,
       });
       if (error) throw error;
+
       res.status(201).json({
         success: true,
         message: "User added successfully",

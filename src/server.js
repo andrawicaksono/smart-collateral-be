@@ -13,10 +13,12 @@ const { errorHandler } = require("./middlewares/error.middleware");
 
 const app = express();
 
+// Security Config
 app.use(helmet());
 app.use(xss());
 app.use(compression());
 
+// Enable CORS
 const corsOptions = {
   origin: process.env.CORS_ORIGIN || "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -24,6 +26,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Rate Limit 100 requests per 15 minutes
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,

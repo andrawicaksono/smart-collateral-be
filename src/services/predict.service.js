@@ -7,6 +7,7 @@ class PredictService {
     try {
       const [result, error] = await this.predictRepository.predict({
         ...data,
+        // Parse data
         swimming_pool: data.swimming_pool ? 1 : 0,
         garden: data.garden ? 1 : 0,
         parking_access: data.parking_access ? 1 : 0,
