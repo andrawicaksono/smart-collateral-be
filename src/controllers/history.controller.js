@@ -87,7 +87,9 @@ class HistoryController {
         message: "History fetched successfully",
         data: {
           total_data: history.count,
-          histories: history.history.map((history) => historyResponse(history)),
+          histories: history.histories.map((history) =>
+            historyResponse(history)
+          ),
         },
       });
     } catch (error) {
