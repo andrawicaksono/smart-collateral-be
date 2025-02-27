@@ -10,6 +10,7 @@ const { xss } = require("express-xss-sanitizer");
 const config = require("./config");
 const routes = require("./routes");
 const { errorHandler } = require("./middlewares/error.middleware");
+const setupSwagger = require("./swaggerConfig");
 
 const app = express();
 
@@ -39,6 +40,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", routes);
 app.use(errorHandler);
+
+setupSwagger("/api/v1", app);
 
 const startServer = async () => {
   try {
